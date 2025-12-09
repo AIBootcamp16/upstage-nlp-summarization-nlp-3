@@ -1,108 +1,68 @@
 # ================================
-# 🌟 Python / NLP 대회 기본 설정
+# 🌟 Python 기본
 # ================================
-
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 *.so
 
-# Distribution / packaging
-build/
-develop-eggs/
-dist/
-eggs/
-.eggs/
-parts/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Virtual environment
+# ================================
+# 🌟 가상환경 / 패키지
+# ================================
 venv/
 env/
 .venv/
 .env/
-pip-wheel-metadata/
-wheelhouse/
+nlp-venv/
+build/
+dist/
+.eggs/
+*.egg-info/
 
 # ================================
-# 🌟 VSCode / Jupyter 관련
+# 🌟 VSCode / Jupyter
 # ================================
 .vscode/
 .ipynb_checkpoints/
-
-# Jupyter autosave files
 *.ipynb_convert
-*.ipynb_checkpoints
 
 # ================================
-# 🌟 HuggingFace / Transformers
+# 🌟 딥러닝 / 로그 / 캐시
 # ================================
-**/runs/
-**/logging/
-**/wandb/
-**/cache/
-**/tokenizer.json
-**/tokenizer.model
-**/sentencepiece.bpe.model
-
-# ================================
-# 🌟 Pytorch / Deep Learning
-# ================================
+# 모델 가중치 / 체크포인트
 *.pth
 *.pt
 *.ckpt
 *.bin
-lightning_logs/
-out/
-outputs/
+outputs/checkpoints/
 checkpoints/
-
-# ================================
-# 🌟 NLP 프로젝트 공통
-# ================================
-# raw data (GitHub 업로드 금지)
-data/
-data_raw/
-data/raw/
-datasets/
-*.csv
-*.tsv
-*.xlsx
-*.parquet
-*.zip
-
-# Tokenizer vocab or temporary files
-*.vocab
-*.model
-*.txt~
+lightning_logs/
+runs/
+wandb/
+**/wandb/
+**/cache/
 cache/
 tmp/
+out/
 
-# Logs
+# ================================
+# 🌟 자동 생성 산출물 (코드 돌리면 다시 나오는 것들)
+# ================================
+# 전체 outputs는 다시 만들 수 있는 값들이라면 통째로 무시
+outputs/*
+!outputs/exp_log.csv
+
+# ================================
+# 🌟 OS / 기타
+# ================================
+.DS_Store
+Thumbs.db
 *.log
 
 # ================================
-# 🌟 OS / 편집기 기본 ignore
-# ================================
-# MacOS
-.DS_Store
-
-# Windows
-Thumbs.db
-
-# Temporary files
-*.tmp
-*.temp
-
-# ================================
-# 🌟 개인 설정(필요 시 추가)
+# 🌟 개인 설정 (보안)
 # ================================
 secret/
 keys/
-config.yaml
 .env

@@ -52,6 +52,8 @@ out/
 # 전체 outputs는 다시 만들 수 있는 값들이라면 통째로 무시
 outputs/*
 !outputs/exp_log.csv
+!outputs/prediction/
+!outputs/prediction/**
 
 # ================================
 # 🌟 OS / 기타

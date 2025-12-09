@@ -1,0 +1,108 @@
+# ================================
+# 🌟 Python / NLP 대회 기본 설정
+# ================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+parts/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+pip-wheel-metadata/
+wheelhouse/
+
+# ================================
+# 🌟 VSCode / Jupyter 관련
+# ================================
+.vscode/
+.ipynb_checkpoints/
+
+# Jupyter autosave files
+*.ipynb_convert
+*.ipynb_checkpoints
+
+# ================================
+# 🌟 HuggingFace / Transformers
+# ================================
+**/runs/
+**/logging/
+**/wandb/
+**/cache/
+**/tokenizer.json
+**/tokenizer.model
+**/sentencepiece.bpe.model
+
+# ================================
+# 🌟 Pytorch / Deep Learning
+# ================================
+*.pth
+*.pt
+*.ckpt
+*.bin
+lightning_logs/
+out/
+outputs/
+checkpoints/
+
+# ================================
+# 🌟 NLP 프로젝트 공통
+# ================================
+# raw data (GitHub 업로드 금지)
+data/
+data_raw/
+data/raw/
+datasets/
+*.csv
+*.tsv
+*.xlsx
+*.parquet
+*.zip
+
+# Tokenizer vocab or temporary files
+*.vocab
+*.model
+*.txt~
+cache/
+tmp/
+
+# Logs
+*.log
+
+# ================================
+# 🌟 OS / 편집기 기본 ignore
+# ================================
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# ================================
+# 🌟 개인 설정(필요 시 추가)
+# ================================
+secret/
+keys/
+config.yaml
+.env

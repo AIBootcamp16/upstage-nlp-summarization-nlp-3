@@ -64,10 +64,8 @@ nlp-competition
 │
 ├── .gitignore
 └── README.md
-
 🧪 대회 & 데이터 요약
 🎯 대회 정보
-
 대회 이름: Dialogue Summarization | 일상 대화 요약
 
 목표: 일상 대화를 입력받아, 대화의 핵심을 한 문장으로 요약하는 모델 구축
@@ -82,7 +80,6 @@ ROUGE-L F1
 → 세 점수의 평균으로 최종 평가
 
 🧾 데이터 구성
-
 train.csv: 12,410개 (fname, dialogue, summary, topic)
 
 dev.csv: 498개
@@ -91,6 +88,8 @@ test.csv: 499개 (summary 없음)
 
 각 샘플은 아래와 같은 구조를 가짐:
 
+text
+코드 복사
 fname,dialogue,summary,topic
 train_0,"#Person1#: 안녕하세요, Mr. Smith. 저는 Dr. Hawkins입니다. 오늘 무슨 일로 오셨어요? 
 #Person2#: 건강검진을 받으려고 왔어요.
@@ -98,10 +97,8 @@ train_0,"#Person1#: 안녕하세요, Mr. Smith. 저는 Dr. Hawkins입니다. 오
 #Person1#: 담배가 폐암하고 심장병의 주된 원인인 거 아시죠? 끊으셔야 해요.
 #Person2#: 네, 고맙습니다, 의사 선생님.",
 "Mr. Smith는 건강검진을 받으러 와서 매년 검진 필요성과 금연 관련 도움을 안내받는다.",건강검진
-
 🔍 EDA & 전처리 전략
 1️⃣ EDA 핵심 인사이트
-
 Dialogue 길이
 
 평균: 약 320–360 tokens
@@ -139,7 +136,6 @@ v3–v6	truncation, topic prefix, 길이/overlap filtering 등	데이터 분포 
 
 🤖 모델링 (KoBART Fine-tuning)
 ⚙ 사용 모델
-
 digit82/kobart-summarization
 
 구조: Encoder–Decoder (BART 계열)
@@ -165,8 +161,8 @@ Scheduler	cosine
 Optimizer	AdamW (adamw_torch)
 Early stopping	patience = 3 (metric: eval_rouge_l)
 Seed	42
-💡 핵심 튜닝 포인트
 
+💡 핵심 튜닝 포인트
 Label smoothing = 0.1
 
 요약은 “정답이 여러 표현으로 존재”하는 태스크 → overconfidence 방지에 효과적
@@ -198,6 +194,8 @@ Label smoothing 0.1
 Weight decay 0.01 이었습니다.
 
 🧭 전체 파이프라인
+text
+코드 복사
 Raw CSV (train/dev/test)
         ↓
         ↓  [01_eda/eda_v2_input_only.ipynb]
@@ -216,20 +214,18 @@ Best checkpoint 선택 (eval_rouge_l 기준)
 Beam Search (num_beams=4, max_len=100)
         ↓
 outputs/prediction/output_preprocessed_v2_input_only_wd0.01_ls0.1.csv
-
 🛠 사용 방법 (How to Run)
-
 ⚠️ 대회 데이터는 공개 저장소에 포함되어 있지 않으므로,
 반드시 개별적으로 다운로드 후 data/raw/ 디렉토리에 위치시켜야 합니다.
 
 1️⃣ 데이터 준비
+bash
+코드 복사
 data/raw/train.csv
 data/raw/dev.csv
 data/raw/test.csv
 data/raw/sample_submission.csv
-
 2️⃣ EDA & 전처리
-
 EDA:
 👉 notebooks/01_eda/eda_v2_input_only.ipynb
 
@@ -237,14 +233,12 @@ EDA:
 👉 notebooks/02_preprocessing/preprocessing_v2_input_only.ipynb
 
 3️⃣ 학습 & 평가
-
 KoBART 학습/검증:
 👉 notebooks/03_modeling/modeling_kobart.ipynb
 
 노트북에서 config.yaml을 기반으로 경로/하이퍼파라미터를 로드하여 학습을 재현할 수 있습니다.
 
 4️⃣ 추론 & 제출 파일 생성
-
 최종 제출 파일:
 
 outputs/prediction/output_preprocessed_v2_input_only_wd0.01_ls0.1.csv
@@ -255,7 +249,6 @@ outputs/prediction/output_preprocessed_v2_input_only.csv
 
 🧠 회고 & 향후 개선 아이디어
 ✨ 이번 실험에서 배운 점
-
 입력 전처리의 힘
 
 감정/잡담성 토큰 제거만으로도 모델이 “핵심 발화”에 더 집중하게 됨.
@@ -271,7 +264,6 @@ length penalty, repetition penalty 등을 크게 바꿔도
 모델 표현력이 충분하지 않으면 성능 상한을 넘기 어려움.
 
 🔮 향후 개선 아이디어
-
 QLoRA / PEFT 기반 파라미터 효율적 튜닝 시도
 
 Topic 정보를 더 정교하게 활용하는 컨디셔닝 전략 (prefix tuning 등)
@@ -281,7 +273,6 @@ Topic 정보를 더 정교하게 활용하는 컨디셔닝 전략 (prefix tuning
 Hard case (실수 많은 샘플) 중심 에러 분석 + 규칙 기반 후처리 강화
 
 🙋‍♀️ 팀 & 브랜치 전략
-
 이 리포지토리는 다음과 같은 브랜치 전략으로 관리됩니다.
 
 main : 최종 정리된 코드 & 결과만 반영하는 안정 브랜치
@@ -293,6 +284,5 @@ yekyung-dev : 개인 실험, 로그, 실험용 코드(초안) 저장용 브랜�
 협업 과정에서 나온 모든 실험은 yekyung-dev → dev → main 순으로 정리·압축되었습니다.
 
 📫 Contact
-
 프로젝트 관련 문의 또는 피드백은
 👉 GitHub Issue 또는 Pull Request로 남겨 주세요.
